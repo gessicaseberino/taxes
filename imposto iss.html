@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background: #008665;
+            font: normal 1rem arial;
+        }
+
+        #fotofapeu {
+            width: 2rem;
+            height: 3rem; 
+            margin-left: 24rem;
+            margin-top: -8rem;
+            padding-bottom: 1.5rem;   
+        } 
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        #section {
+        background: white;
+        border-radius: .8rem;
+        padding: 1rem;
+        width: 30rem;
+        margin: auto;
+        
+        box-shadow: .1rem .1rem .3rem;
+        }
+
+        #txt{
+            text-align: center;
+        }
+
+        #txtp {
+            margin-left: 5rem;
+        }
+
+        .iss {
+            margin-left: 8rem;
+            margin-top: 1rem;
+            
+        }
+
+        footer {
+        font-size: 0.7rem;
+        color: white;
+        text-align: center;
+        font-style: italic;
+        }
+
+        #resposta {
+        margin-top: 1rem;
+        font-size: 150%;
+        text-align: center;
+        color: white;
+        }
+
+        #site {
+            border-radius: 0.8rem;
+            padding: 0.6rem;
+            color: white;
+            width: 6.4em;
+            height: 0.8rem;
+            background:  #008665;
+            box-shadow: 6rem; 
+            cursor: pointer;  /*maozinha em cima pra clicar*/
+            font: 400 1rem; 
+            display: flex;
+            align-items:center;
+            justify-content:center;
+            text-decoration: none;
+            
+        }
+
+        #site:hover {
+        background: rgb(71, 211, 71);
+        transition: background 1s;
+        }
+
+        #aliquota {
+        margin: auto;
+        font-size: 1rem;
+        text-align: center;  
+        }
+        
+    
+    #aliquotacnae {
+        background: white;
+        border-radius: .8rem;
+        padding: 0.6rem;
+        width: 15rem;
+        margin: auto;
+        box-shadow: .1rem .1rem .3rem;
+    }
+
+    </style>
+
+
+<title>Retenção Imposto</title>
+</head>
+
+<body>
+    <header>
+    <h1> Retenção ISS </h1>
+
+    <img src="https://visemazoot.paginas.ufsc.br/files/2016/08/Logo_FAPEU_Cor.jpg" alt="foto-fapeu" id="fotofapeu">
+
+    </header>
+
+    
+
+<div id="section">
+
+    <div>
+        <a id="site" href="http://www8.receita.fazenda.gov.br/simplesnacional/aplicacoes.aspx?id=21" target="_blank"> Consulta MEI</a> 
+
+    </div> <br>
+
+    <!-- <button type="submit" formaction="http://www8.receita.fazenda.gov.br/simplesnacional/aplicacoes.aspx?id=21" formtarget="_blank"> Consulta MEI </button> -->
+
+    <form> 
+        <div id="simples" >
+            <legend >A empresa é  <strong>MEI</strong> (Micro Empreendedor Individual)?</legend>
+            <input type="checkbox" id="simpless"  onchange="showmessage()" > 
+            <label for="simpless">Sim</label><br>
+            <input type="checkbox" id="simplesn"  onchange="showCnae('cnae')"> 
+            <label for="simplesn">Não</label><br>
+            <br>
+        </div>
+
+        <div id="cnae" style="display:none;">  
+            <p> Consulta de código CNAE
+                <select name="test" id="cest">
+                <option> 3.05 </option>
+                <option> 7.02 </option>
+                <option> 7.04 </option>
+                <option> 7.05 </option>
+                <option> 7.09 </option>
+                <option> 7.10 </option>
+                <option> 7.12 </option>
+                <option> 7.16 </option>
+                <option> 7.17 </option>
+                <option> 7.19</option>
+                <option> 11.02</option>
+                <option> 17.05</option>
+                <option> 17.10</option>
+                </select>
+            </p>
+
+            <legend>O código CNAE da NF consta na lista acima ?</legend>
+            <input type="checkbox" id="cnaes"   onchange="showserv('serv')"> 
+            <label for="cnaes">Sim</label> <br>
+            <input type="checkbox" id="cnaen"  onchange="showmessage()"> 
+            <label for="cnaen">Não</label><br>
+            <br> 
+
+        </div>
+
+        <div id="serv" style="display:none;">
+             <legend>O serviço foi prestado em <strong>Florianópolis</strong>?</legend>
+            <input type="checkbox"  id="servfls" onchange="showLocal('local')"> 
+            <label for="servfls">Sim</label><br>
+            <input type="checkbox"  id="servfln"  onchange="showmessage()"> 
+            <label for="servfln">Não</label><br>
+            <br>
+        </div>
+
+        <div id="local" style="display:none;">
+            <legend> A empresa é de <strong>Florianópolis</strong>?</legend>
+            <input type="checkbox" name="empfl" id="empfls" onchange="verifEmpFloripa()"> 
+            <label for="empfls">Sim</label><br>
+            <input type="checkbox" name="empfl" id="empfln" onchange="verifEmpFloripa()"> 
+            <label for="empfln">Não</label><br> 
+            <br>
+        </div>
+    </form>     
+</div>
+<br>
+
+
+<div id="aliquotacnae" style="display:none;">
+    <p id="aliquota">  Alíquotas CNAE
+        <select name="test" id="cest">
+        <option> 3.05 (5%)</option>
+        <option> 7.02 (3%)</option>
+        <option> 7.04 </option>
+        <option> 7.05 (3%)</option>
+        <option> 7.09 (3%)</option>
+        <option> 7.10 (2,5%)</option>
+        <option> 7.12 (3%)</option>
+        <option> 7.16 (3%)</option>
+        <option> 7.17 (3%)</option>
+        <option> 7.19 (3%)</option>
+        <option> 11.02 (2,5%)</option>
+        <option> 17.05 (2,5%)</option>
+        <option> 17.10 (5%)</option>
+        </select>
+    </p>
+</div>
+
+<div id="resposta"> 
+
+</div>
+
+<!-- src="projeto6.js" -->
+
+<script > 
+
+// variavel da div resposta que aparece quando chamada na função
+let res = document.querySelector(`#resposta`)
+
+// funcoes para modificar o estado das divs ocultas quando chamadas
+function showCnae (box) {
+    let cnae = document.getElementById('cnae').style.display;
+    let vis = "none";
+
+    if (cnae=="none"){
+     vis = "block"; }
+    if(cnae=="block"){
+     vis = "none"; }
+    document.getElementById(box).style.display = vis;
+}
+
+function showserv (box2) {
+    let servico = document.getElementById('serv').style.display;
+    let visible = "none";
+    if (servico == "none") {
+        visible = "block"; }
+    if (servico == "block"){
+        visible = "none";}
+    document.getElementById(box2).style.display = visible;
+}
+
+
+function showLocal(box3) {
+    let local = document.getElementById('local').style.display;
+    let visib = "none";
+    if (local == "none") {
+        visib = "block";}
+    if (local == "block"){
+        visib = "none";}
+    document.getElementById(box3).style.display = visib;
+}
+
+// função para verificar qual é a aliquota de retenção na nota fiscal baseado na localização da prestadora de serviço.
+function verifEmpFloripa () {
+    if(document.getElementById('empfls').checked) {
+        res.innerHTML = ' Tem retenção de ISS. Usar alíquota que consta na NF'
+    }  else if (document.getElementById('empfln').checked)  {
+        res.innerHTML = 'Tem retenção de ISS. Usar alíquota correspondente ao CNAE acima'
+        document.getElementById('aliquotacnae').style.display = 'block'
+    } else {
+        res.innerHTML = ''
+        document.getElementById('aliquotacnae').style.display = 'none'
+    }}
+        
+    
+// função para verificar checkbox em todas as situações em que não tem retenção de ISS 
+    function showmessage() {
+        if(document.getElementById('simpless').checked || 
+            document.getElementById('cnaen').checked || 
+            document.getElementById('servfln').checked || 
+            document.getElementById('empfln').checked ) { 
+            res.innerHTML = ' Não tem retenção de ISS '
+        } else {
+            res.innerHTML = '' 
+        }
+    }
+    
+
+</script> 
+
+<footer> 
+    <p> Desenvolvido por Gessica Seberino </p>
+</footer>
+
+</body>
+</html>
